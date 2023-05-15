@@ -1,4 +1,4 @@
-use advent_of_code::{q1, q2, q3, q4, q5, q6, q7};
+use advent_of_code::{q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11};
 
 fn main() {
     println!("Q1:");
@@ -18,4 +18,12 @@ fn main() {
     q6::run();
     println!("Q7:");
     q7::solve_q7();
+    println!("Q8:");
+    q8::solve_q8();
+    println!("Q9:");
+    q9::solve_q9();
+    println!("Q10:");
+    q10::solve_q10();
+    println!("Q11:");
+    q11::solve_q11();
 }

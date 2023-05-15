@@ -62,12 +62,13 @@ pub fn run2() {
 
 }
 
-fn parse_boxes(boxes: Vec<&str>) -> Vec<Vec<char>> {
+fn parse_boxes(mut boxes: Vec<&str>) -> Vec<Vec<char>> {
+    boxes.pop();
     let mut box_stacks: Vec<Vec<char>> = Vec::new();
     for line in boxes {
         let chunks = line.as_bytes().chunks(4);
         for (stack_number, chunk) in chunks.enumerate() {
-            if chunk[1].is_ascii_digit() { continue; }
+            if chunk.len() > 2 && chunk[1].is_ascii_digit() { continue; }
             if box_stacks.len() == 0 || ((box_stacks.len() - 1) < stack_number)  {
                 box_stacks.push(Vec::new());
             }
@@ -116,9 +117,9 @@ mod test {
 [M] [P] [A]
 1   2   3";
         let expected_output = vec![
-            vec!['M', 'C',],
-            vec!['P', 'D', 'N', 'Z'],
-            vec!['A'],
+            vec!['M', 'C', 'N', 'Z'],
+            vec!['P', 'D'],
+            vec!['A',],
         ];
 
         assert_eq!(parse_boxes(input.split('\n').collect()), expected_output);
